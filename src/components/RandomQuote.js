@@ -1,14 +1,5 @@
-import {gql, useQuery} from "@apollo/client" 
-import "./styles.css";
-
-export default function App() {
-  return (
-    <div className="App">
-      <h1>Inspiring Quote</h1>
-      <RandomQuote />
-    </div>
-  );
-}
+import { useQuery, gql } from "@apollo/client";
+import Quote from "./Quote";
 
 const RANDOM_QUOTE_QUERY = gql`
   query RandomQuoteGet{
@@ -17,14 +8,14 @@ const RANDOM_QUOTE_QUERY = gql`
       author
     }
   }
-`
+`;
 
-function RandomQuote() {
+export default function RandomQuote() {
   const { data, loading, error, refetch } = useQuery(RANDOM_QUOTE_QUERY, {
     fetchPolicy: "no-cache"
-  })
+  });
   if (loading) {
-    return "Quote is loading"
+    return "Quote is loading";
   }
 
   if (error) {
@@ -36,21 +27,10 @@ function RandomQuote() {
     <>
       <Quote text={text} author={author} />
       <button
-        onClick={() => { 
+        onClick={() => {
           refetch();
         }}
       >Get new quote</button>
-    </>
-  )
-}
-
-function Quote({ text, author }) {
-  return (
-    <>
-      <blockquote>
-        {text}
-        <footer>{author}</footer>
-      </blockquote>
     </>
   );
 }

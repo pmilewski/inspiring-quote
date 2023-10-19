@@ -5,11 +5,9 @@ import {
   InMemoryCache,
   ApolloProvider,
 } from "@apollo/client";
-import App from "./App";
+import App from "./components/App";
 
 const URL = "https://x5sfpd-4000.csb.app/";
-// const URL = "http://localhost:4000"
-// const URL = "https://zgcrm.sse.codesandbox.io/"
 
 const client = new ApolloClient({
   uri: URL,
